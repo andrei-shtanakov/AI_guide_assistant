@@ -18,7 +18,7 @@ transformers = "*"
 sentence-transformers = "*"
 pinecone-client = "*"
 pinecone = {extras = ["grpc"], version = "*"}
-
+langchain-chroma = "*"
 
 [dev-packages]
 tomlcheck = "*"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d186d020e7956d126af837542a368de274bc95dae8e2e1641cadcb8c93565b26"
+            "sha256": "4d00e0e16c829d36a4844e55e0ed406d37bada6413a272a97b2de43f355d0e97"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -862,6 +862,7 @@
                 "sha256:eeb38ff04ab6e5756a2aef6ad8d94e89bb4a51ef96e20f45c44ba190fa0bcaad",
                 "sha256:f8261fa2a5f679abeb2a0a93ad056d765cdca1c47745eda3f2d87f874ff4b8c9"
             ],
+            "markers": "python_version >= '3.8'",
             "version": "==1.68.1"
         },
         "h11": {
@@ -1130,6 +1131,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.9' and python_version < '4.0'",
             "version": "==0.3.12"
+        },
+        "langchain-chroma": {
+            "hashes": [
+                "sha256:2877b284fc736bfd31628aa542ed0f5410c3cdc63ad2c670cb67fc360b4a236a",
+                "sha256:5963a79bf72af0f72019084bbc1e610d03ba33ec2df9a4b47b27c0132aa533fb"
+            ],
+            "index": "pypi",
+            "markers": "python_full_version >= '3.8.1' and python_version < '4'",
+            "version": "==0.1.4"
         },
         "langchain-community": {
             "hashes": [
@@ -2164,28 +2174,28 @@
                 "grpc"
             ],
             "hashes": [
-                "sha256:1fad082c66a50a229b58cda0c3a1fa0083532dc9de8303015fe4071cb25c19a8",
-                "sha256:23e8aaa73b400bb11a3b626c4129284fb170f19025b82f65bd89cbb0dab2b873"
+                "sha256:a216630331753958f4ebcdc6e6d473402d17152f2194af3e19b3416c73b0dcc4",
+                "sha256:dd180963d29cd648f2d58becf18b21f150362aef80446dd3a7ed15cbe85bb4c7"
             ],
             "markers": "python_version >= '3.8' and python_version < '4.0'",
-            "version": "==5.4.2"
+            "version": "==5.3.1"
         },
         "pinecone-client": {
             "hashes": [
-                "sha256:3d69cbbca2d9d4f77c90bad59a1194e3d20d535b29f277eee32b439fd526546b",
-                "sha256:fa89c605792ec94de36d4c9585250b47b0b643407457053eca89008424be6281"
+                "sha256:11c33ff5d1c38a6ce69e69fe532c0f22f312fb28d761bb30b3767816d3181d64",
+                "sha256:c8f7835e1045ba84e295f217a8e85573ffb80b41501bbc1af6d92c9631c567a7"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8' and python_version < '4.0'",
-            "version": "==4.1.2"
+            "version": "==5.0.1"
         },
         "pinecone-plugin-inference": {
             "hashes": [
-                "sha256:96e861527bd41e90d58b7e76abd4e713d9af28f63e76a51864dfb9cf7180e3df",
-                "sha256:eff826178e1fe448577be2ff3d8dbb072befbbdc2d888e214624523a1c37cd8d"
+                "sha256:283e5ae4590b901bf2179beb56fc3d1b715e63582f37ec7abb0708cf70912d1f",
+                "sha256:32c61aba21c9a28fdcd0e782204c1ca641aeb3fd6e42764fbf0de8186eb657ec"
             ],
             "markers": "python_version >= '3.8' and python_version < '4.0'",
-            "version": "==3.1.0"
+            "version": "==1.1.0"
         },
         "pinecone-plugin-interface": {
             "hashes": [
