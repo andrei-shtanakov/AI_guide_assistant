@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+langchain = "*"
+langchain-community = "*"
+langchain-openai = "*"
+openai = "*"
+unstructured = "*"
+python-docx = "*"
+chromadb = "*"
+fastapi = "*"
+uvicorn = "*"
+transformers = "*"
+sentence-transformers = "*"
+pinecone-client = "*"
+pinecone = {extras = ["grpc"], version = "*"}
+
+
+[dev-packages]
+tomlcheck = "*"
+toml = "*"
+
+[requires]
+python_version = "3.10"
+python_full_version = "3.10.15"
