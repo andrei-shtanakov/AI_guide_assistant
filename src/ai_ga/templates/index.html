@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -31,6 +31,15 @@
         .severity-LOW { border-left: 5px solid yellow; }
         .severity-MEDIUM { border-left: 5px solid orange; }
         .severity-HIGH { border-left: 5px solid red; }
+        .ai-analysis {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .analysis-type {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -38,27 +47,40 @@
     <div class="container">
         <div class="input-section">
             <h2>Configuration Input</h2>
+            <div class="analysis-type">
+                <label>Analysis Type:</label>
+                <select id="analysis-type">
+                    <option value="pattern">Pattern Only</option>
+                    <option value="openai">Pattern + OpenAI</option>
+                    <option value="claude">Pattern + Claude</option>
+                </select>
+            </div>
             <textarea id="config-input" placeholder="Paste your configuration here..."></textarea>
             <button onclick="analyzeConfig()">Analyze</button>
         </div>
         <div class="results-section">
             <h2>Results</h2>
             <div id="results"></div>
+            <div id="ai-analysis" class="ai-analysis"></div>
         </div>
     </div>
 
     <script>
         function analyzeConfig() {
             const config = document.getElementById('config-input').value;
+            const analysisType = document.getElementById('analysis-type').value;
             const resultsDiv = document.getElementById('results');
+            const aiAnalysisDiv = document.getElementById('ai-analysis');
+            
             resultsDiv.innerHTML = 'Analyzing...';
+            aiAnalysisDiv.innerHTML = '';
 
             fetch('/analyze', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `config=${encodeURIComponent(config)}`
+                body: `config=${encodeURIComponent(config)}&analysis_type=${encodeURIComponent(analysisType)}`
             })
             .then(response => response.json())
             .then(data => {
@@ -67,6 +89,7 @@
                     return;
                 }
 
+                // Отображение результатов паттерн-анализа
                 resultsDiv.innerHTML = '';
                 data.results.forEach(match => {
                     resultsDiv.innerHTML += `
@@ -84,6 +107,14 @@
                         </div>
                     `;
                 });
+
+                // Отображение AI анализа, если он есть
+                if (data.ai_analysis) {
+                    aiAnalysisDiv.innerHTML = `
+                        <h3>AI Analysis</h3>
+                        <div class="ai-content">${data.ai_analysis.replace(/\n/g, '<br>')}</div>
+                    `;
+                }
             })
             .catch(error => {
                 resultsDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;

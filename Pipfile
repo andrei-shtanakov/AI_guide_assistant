@@ -20,14 +20,17 @@ pinecone-client = "*"
 pinecone = {extras = ["grpc"], version = "*"}
 langchain-chroma = "*"
 flask = "*"
+anthropic = "*"
 
 [dev-packages]
 tomlcheck = "*"
 toml = "*"
 
 [scripts]
+run-db-image = "docker compose -f docker-compose.yaml up -d"
 init-db = "python -m src.ai_ga.init_db"
 start = "python -m src.ai_ga.main"
+stop-db-image = "docker compose -f docker-compose.yaml down"
 
 [requires]
 python_version = "3.10"
