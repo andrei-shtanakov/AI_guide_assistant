@@ -1,100 +1,53 @@
-- config: 'FROM ubuntu:latest
-
-    USER root
-
-    EXPOSE 22
-
-    '
-  description: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\
-    \u0438\u0435 root \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\
-    \u043B\u044F \u0432 \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0435\
-    \ \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u043D\u0435\u0431\u0435\u0437\
-    \u043E\u043F\u0430\u0441\u043D\u043E\u0439 \u043F\u0440\u0430\u043A\u0442\u0438\
-    \u043A\u043E\u0439"
-  id: docker_root_unsafe_001
+- config: | 
+    ml EasyBuild
+    ml Amber/2024-CUDA-11
+    ml MOE/24
+    module load PythonDS
+  description: |
+    Modules can influence on each other. Try to load only module you want to use right now.
+  id: module_load_001
   recommendations:
-  - "\u0421\u043E\u0437\u0434\u0430\u0439\u0442\u0435 \u0438 \u0438\u0441\u043F\u043E\
-    \u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043D\u0435\u043F\u0440\u0438\u0432\
-    \u0438\u043B\u0435\u0433\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u043E\u0433\
-    \u043E \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
-  - "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 USER <non-root-user> \u0432\
-    \ Dockerfile"
-  - "\u0423\u0431\u0435\u0434\u0438\u0442\u0435\u0441\u044C, \u0447\u0442\u043E \u043F\
-    \u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043C\u043E\u0436\u0435\
-    \u0442 \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u0431\u0435\u0437 root\
-    \ \u043F\u0440\u0430\u0432"
-  severity: HIGH
-- config: 'FROM ubuntu:latest
-
-    RUN apt-get update
-
-    '
-  description: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\
-    \u0438\u0435 \u0442\u0435\u0433\u0430 latest \u043C\u043E\u0436\u0435\u0442 \u043F\
-    \u0440\u0438\u0432\u0435\u0441\u0442\u0438 \u043A \u043D\u0435\u043F\u0440\u0435\
-    \u0434\u0441\u043A\u0430\u0437\u0443\u0435\u043C\u044B\u043C \u0440\u0435\u0437\
-    \u0443\u043B\u044C\u0442\u0430\u0442\u0430\u043C"
-  id: docker_latest_tag_001
-  recommendations:
-  - "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043A\u043E\
-    \u043D\u043A\u0440\u0435\u0442\u043D\u0443\u044E \u0432\u0435\u0440\u0441\u0438\
-    \u044E \u043E\u0431\u0440\u0430\u0437\u0430"
-  - "\u0417\u0430\u0444\u0438\u043A\u0441\u0438\u0440\u0443\u0439\u0442\u0435 \u0432\
-    \u0435\u0440\u0441\u0438\u044E \u0432 Dockerfile"
+    - "Don't load all modules simultaneously, try to use aliases instead and run them when you need"
+    - "Start with ml purge before loading new modules - alias setup_sci='ml purge && ml foss-2023b && ml OpenMPI/4.1.5'"
+    - "Make and use aliases to load modules youneed to use to simplify workflow  - alias load_amber='ml purge && ml EasyBuild && ml Amber/2024-CUDA-11'"
+    - "Create named collections for specific workflows"
   severity: MEDIUM
-- config: 'FROM python:3.9
-
-    CMD [''python'', ''app.py'']'
-  description: "\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442\
-    \ \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0437\u0434\u043E\u0440\u043E\
-    \u0432\u044C\u044F \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0430"
-  id: docker_no_healthcheck_001
+- config: |
+    ml test/foss-2018a
+    module load MODULE/GCCcore-10.2
+    ml SecondSoft/foss-2018a
+    ml anyapp/foss-2018a
+    ml NewMod/GCC-10.2
+  description: "The foss-2018a, GCCCore-10.2 and GCC-10.2 are obsolete and modules based on these toolchains are deprecatedм"
+  id: module_load_002
   recommendations:
-  - "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 HEALTHCHECK \u0432 Dockerfile"
-  - "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0441\u043E\u043E\u0442\
-    \u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0435 \u043F\u0430\
-    \u0440\u0430\u043C\u0435\u0442\u0440\u044B \u043F\u0440\u043E\u0432\u0435\u0440\
-    \u043A\u0438"
-  severity: LOW
-- config: 'FROM python:3.9
-
-    CMD [''python'', ''app.py'']'
-  description: "\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442\
-    \ \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0437\u0434\u043E\u0440\u043E\
-    \u0432\u044C\u044F \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0430"
-  id: docker_no_healthcheck_001
+    - "Avoid writting these command in .bashrc file. Use aliases instead. It's more easy to check and fix short aliase then large .bashrc file"
+    - "Be sure you use last versions of modules. Toolchaines are changed one time per two yeas aproximately."
+  severity: HIGH
+- config: |
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/usr/prog/Miniconda3/22.11.1-1/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/usr/prog/Miniconda3/22.11.1-1/etc/profile.d/conda.sh" ]; then
+            . "/usr/prog/Miniconda3/22.11.1-1/etc/profile.d/conda.sh"
+        else
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+  description: "Conda environment inicialisation. Some modules, like UGE, can't work with conda activated."
+  id: environment_vars_001
   recommendations:
-  - "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 HEALTHCHECK \u0432 Dockerfile"
-  - "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0441\u043E\u043E\u0442\
-    \u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0435 \u043F\u0430\
-    \u0440\u0430\u043C\u0435\u0442\u0440\u044B \u043F\u0440\u043E\u0432\u0435\u0440\
-    \u043A\u0438"
-  severity: LOW
-- config: 'FROM python:3.9
-
-    CMD [''python'', ''app.py'']'
-  description: "\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442\
-    \ \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0437\u0434\u043E\u0440\u043E\
-    \u0432\u044C\u044F \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0430"
-  id: docker_no_healthcheck_001
+    - "Exclude Conda activation block from the .bashrc file if you works with modules or with UGE scheduler."
+  severity: HIGH
+- config: |
+    export PYTHONPATH=/usr/prog/PythonDS/
+    export LBRARY_PATH=$LIBRARY_PATH:/usr/prog/Amber/2024-3/lib
+  description: "If you include changing environmental variables in .bashrc file it can influence some software."
+  id: environment_vars_002
   recommendations:
-  - "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 HEALTHCHECK \u0432 Dockerfile"
-  - "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0441\u043E\u043E\u0442\
-    \u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0435 \u043F\u0430\
-    \u0440\u0430\u043C\u0435\u0442\u0440\u044B \u043F\u0440\u043E\u0432\u0435\u0440\
-    \u043A\u0438"
-  severity: LOW
-- config: 'FROM python:3.9
-
-    CMD [''python'', ''app.py'']'
-  description: "\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442\
-    \ \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0437\u0434\u043E\u0440\u043E\
-    \u0432\u044C\u044F \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0430"
-  id: docker_no_healthcheck_001
-  recommendations:
-  - "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 HEALTHCHECK \u0432 Dockerfile"
-  - "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0441\u043E\u043E\u0442\
-    \u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0435 \u043F\u0430\
-    \u0440\u0430\u043C\u0435\u0442\u0440\u044B \u043F\u0440\u043E\u0432\u0435\u0440\
-    \u043A\u0438"
+  - "Be careful with some 'export <VARIABLE>'. It can ifluence other modules."
   severity: LOW

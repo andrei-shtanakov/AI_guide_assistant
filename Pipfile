@@ -19,10 +19,15 @@ sentence-transformers = "*"
 pinecone-client = "*"
 pinecone = {extras = ["grpc"], version = "*"}
 langchain-chroma = "*"
+flask = "*"
 
 [dev-packages]
 tomlcheck = "*"
 toml = "*"
+
+[scripts]
+init-db = "python -m src.ai_ga.init_db"
+start = "python -m src.ai_ga.main"
 
 [requires]
 python_version = "3.10"

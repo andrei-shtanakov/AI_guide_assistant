@@ -18,7 +18,7 @@ class PatternLoader:
         self.patterns_dir = Path(patterns_dir)
 
     def load_patterns(self) -> List[ConfigPattern]:
-        """Загружает все паттерны из YAML файла."""
+        """Loads all patterns from the YAML file."""
         patterns_file = self.patterns_dir / 'patterns.yaml'
         
         with open(patterns_file, 'r') as f:
@@ -36,17 +36,17 @@ class PatternLoader:
         ]
 
     def add_pattern(self, pattern: ConfigPattern):
-        """Добавляет новый паттерн в YAML файл."""
+        """Adds a new pattern to the YAML file."""
         patterns_file = self.patterns_dir / 'patterns.yaml'
         
-        # Загружаем существующие паттерны
+        # Load existing patterns
         if patterns_file.exists():
             with open(patterns_file, 'r') as f:
                 patterns = yaml.safe_load(f) or []
         else:
             patterns = []
 
-        # Добавляем новый паттерн
+        # Add new pattern
         patterns.append({
             'id': pattern.id,
             'config': pattern.config,
@@ -55,6 +55,6 @@ class PatternLoader:
             'recommendations': pattern.recommendations
         })
 
-        # Сохраняем обновленный список
+        # Save updated list
         with open(patterns_file, 'w') as f:
             yaml.safe_dump(patterns, f)
