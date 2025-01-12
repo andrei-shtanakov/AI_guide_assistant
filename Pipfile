@@ -21,6 +21,9 @@ pinecone = {extras = ["grpc"], version = "*"}
 langchain-chroma = "*"
 flask = "*"
 anthropic = "*"
+torch = "*"
+torchvision = "*"
+torchaudio = "*"
 
 [dev-packages]
 tomlcheck = "*"
@@ -33,5 +36,7 @@ start = "python -m src.ai_ga.main"
 stop-db-image = "docker compose -f docker-compose.yaml down"
 
 [requires]
-python_version = "3.10"
 python_full_version = "3.10.15"
+
+[env]
+PYTHONPATH = "$(pwd)/src"
