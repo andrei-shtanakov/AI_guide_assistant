@@ -11,7 +11,6 @@ langchain-openai = "*"
 openai = "*"
 unstructured = "*"
 python-docx = "*"
-chromadb = "*"
 fastapi = "*"
 uvicorn = "*"
 transformers = "*"
@@ -37,6 +36,3 @@ stop-db-image = "docker compose -f docker-compose.yaml down"
 
 [requires]
 python_full_version = "3.10.15"
-
-[env]
-PYTHONPATH = "$(pwd)/src"

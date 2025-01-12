@@ -1,9 +1,28 @@
+version: '3.8'
+
 services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "${PORT}:5000"
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=${PYTHONPATH}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_HOST=${PINECONE_HOST}
+    depends_on:
+      - pinecone
+
   pinecone:
     image: ghcr.io/pinecone-io/pinecone-local:latest
     environment: 
-      PORT: 5080
-      PINECONE_HOST: localhost
+      - PORT=5080
+      - PINECONE_HOST=pinecone
     ports: 
       - "5080-6000:5080-6000"
     platform: linux/amd64
