@@ -1,9 +1,11 @@
 from pinecone.grpc import PineconeGRPC, GRPCClientConfig
 from pinecone import ServerlessSpec
 import time
+import os
+from typing import List, Dict, Any, Optional
 
 class PineconeStorage:
-    def __init__(self, api_key="pclocal", host="http://localhost:5080"):
+    def __init__(self, api_key="pclocal", host="http://pinecone:5080"):
         self.pc = PineconeGRPC(api_key=api_key, host=host)
         self.index = None
         
