@@ -30,8 +30,8 @@ toml = "*"
 
 [scripts]
 run-db-image = "docker compose -f docker-compose.yaml up -d"
-init-db = "python -m src.ai_ga.init_db"
-start = "python -m src.ai_ga.main"
+init-db = "python -m ai_ga.init_db"
+start = "python -m ai_ga.main"
 stop-db-image = "docker compose -f docker-compose.yaml down"
 
 [requires]
