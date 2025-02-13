@@ -3,7 +3,8 @@ import torch
 
 class BertEmbedder:
     def __init__(self, model_name='bert-base-uncased'):
-        self.tokenizer = BertTokenizer.from_pretrained(model_name)
+#        self.tokenizer = BertTokenizer.from_pretrained(model_name)
+        self.tokenizer = BertTokenizer.from_pretrained('/app/models/bert-base-uncased')
         self.model = BertModel.from_pretrained(model_name)
     
     def get_embedding(self, text):
